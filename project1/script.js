@@ -1,23 +1,55 @@
-function fun() {
-  let refElem = document.getElementById("ref");
+let nameTextBox=document.getElementById("name");
+let numberTextBox=document.getElementById("number");
+let emailTextBox=document.getElementById("email");
+let passwordTextBox=document.getElementById("password");
+let cPasswordTextBox=document.getElementById("cPassword");
 
-  let name = "balayya";
-  let age = 16;
 
-  let card=`
-            <div class="card">
-                <img src="./assets/image.png" alt="">
-                <h1>jai balayya</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing 
-                </p>
-                <button>Read More</button>
-            </div>
-        `
-    let cards="";
-    for(let i=0;i<=10;i++){
-        cards+=card;
+function reg(e){
+     e.preventDefault();
+
+    let name=nameTextBox.value;
+    let number=numberTextBox.value;
+    let email=emailTextBox.value;
+    let password=passwordTextBox.value;
+    let cPassword=cPasswordTextBox.value;
+
+
+    // let obj={
+    //     name:name,
+    //     number:number,
+    //     emailL:email,
+    //     password:password
+    // }
+
+    // validation
+
+    if(name=="" || email=="" || number=="" || password=="" || cPassword==""){
+        alert("plase fill all the details")
+        return;
+    }
+    // regex
+    let numberRegex=/^[6-9][0-9]{9}$/;
+    let numberResult=numberRegex.test(number)
+    if(numberResult==false){
+        alert("check your number")
+        return;
     }
 
-    refElem.innerHTML=cards;
+    if(password!=cPassword){
+        alert("passwoprd is not matching");
+        return;
+    }
+
+    let obj={
+        name,
+        number,
+        email,
+        password
+    }
+
+   
+    console.log(obj)
+    // BE req
+    alert("reg success");
 }
